@@ -49,10 +49,14 @@ Label(stats_group, text="Speed: ").grid(column=0, row=5, padx=10, pady=10, stick
 
 
 def get_pokemon_info():
-    try:
-        poke_info = poke_api.get_pokemon_info(pokemon.get())
-    except:
+    
+    if pokemon.get() == '' or pokemon.get().isspace():
+        return
+    poke_info = poke_api.get_pokemon_info(pokemon.get())
+    if poke_info is None:
         messagebox.showerror(title="Error", message=f'Unable to fetch information for {pokemon.get()} from the PokeAPI')
+        return
+        
 
     height = poke_info['height']
     weight = poke_info['weight']
@@ -87,17 +91,17 @@ def get_pokemon_info():
     SpDefense = poke_info['stats'][4]['base_stat']
     Speed = poke_info['stats'][5]['base_stat']
 
-    HPbar = Progressbar(stats_group, orient=HORIZONTAL, length = 100, mode='determinate', value=(HP/max_hp * 100))
+    HPbar = Progressbar(stats_group, orient=HORIZONTAL, length = 200, mode='determinate', value=(HP/max_hp * 100))
     HPbar.grid(column=1, row=0, padx=10, pady=10)
-    Attackbar = Progressbar(stats_group, orient=HORIZONTAL, length = 100, mode='determinate', value = (Attack/max_at * 100))
+    Attackbar = Progressbar(stats_group, orient=HORIZONTAL, length = 200, mode='determinate', value = (Attack/max_at * 100))
     Attackbar.grid(column=1, row=1, padx=10, pady=10)
-    Defensebar = Progressbar(stats_group, orient=HORIZONTAL, length = 100, mode='determinate', value = (Defense/max_def * 100))
+    Defensebar = Progressbar(stats_group, orient=HORIZONTAL, length = 200, mode='determinate', value = (Defense/max_def * 100))
     Defensebar.grid(column=1, row=2, padx=10, pady=10)
-    SpAttackbar = Progressbar(stats_group, orient=HORIZONTAL, length = 100, mode='determinate', value = (SpAttack/max_spat * 100))
+    SpAttackbar = Progressbar(stats_group, orient=HORIZONTAL, length = 200, mode='determinate', value = (SpAttack/max_spat * 100))
     SpAttackbar.grid(column=1, row=3, padx=10, pady=10)
-    SpDefensebar = Progressbar(stats_group, orient=HORIZONTAL, length = 100, mode='determinate', value = (SpDefense/max_spdef * 100))
+    SpDefensebar = Progressbar(stats_group, orient=HORIZONTAL, length = 200, mode='determinate', value = (SpDefense/max_spdef * 100))
     SpDefensebar.grid(column=1, row=4, padx=10, pady=10)
-    Speedbar = Progressbar(stats_group, orient=HORIZONTAL, length = 100, mode='determinate', value = (Speed/max_speed * 100))
+    Speedbar = Progressbar(stats_group, orient=HORIZONTAL, length = 200, mode='determinate', value = (Speed/max_speed * 100))
     Speedbar.grid(column=1, row=5, padx=10, pady=10)
     
 

@@ -36,10 +36,10 @@ def get_pokemon_info(name_or_number):
         return json.loads(response.text)
 
     else:
-        raise ValueError('bad')
         print('failure')
         print(f'Response code {response.status_code} ({response.reason})')
         print(f"Error: {response.text}")
+        return
 
 if __name__ == '__main__':
     main()
