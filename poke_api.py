@@ -34,6 +34,7 @@ def get_pokemon_info(name_or_number):
     if response.status_code == requests.codes.ok:
         print('success')
         return json.loads(response.text)
+
     else:
         raise ValueError('bad')
         print('failure')
