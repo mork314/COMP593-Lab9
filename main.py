@@ -6,11 +6,11 @@ import poke_api
 
 root = Tk()
 
+
+#This is leftover from when I started making the script - now it's just used for size of info group. probably totally unecessary
 win_width = 1200
 
 win_height = 800
-
-#root.geometry(f'{win_width}x{win_height}')
 
 root.title('Pokemon Information')
 
